@@ -1,50 +1,39 @@
+{% template agenda_row %}
+<div style="display: grid; grid-template-columns: 72px 68px minmax(0, 1fr); column-gap: 6px; align-items: baseline; line-height: 1.3;">
+  <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+    <span class="label label--small text--gray-4">{{ category }}:</span>
+  </div>
+  <div style="overflow: hidden; white-space: nowrap;">
+    <span class="value value--xsmall value--tnums" style="font-weight: bold;">{{ action.todo }}</span>
+  </div>
+  <div style="min-width: 0;">
+    <span class="title title--small" data-clamp="1">{{ action.path }}</span>
+  </div>
+</div>
+{% endtemplate %}
+
 <div class="layout layout--col px--2 py--1">
+
   {% assign current_time = trmnl.system.timestamp_utc | plus: trmnl.user.utc_offset %}
 
   <div class="mb--1">
-    <span class="value value--small" style="white-space: nowrap; display: block;">
-      {{ current_time | date: '%A' }}, {{ current_time | date: '%B %d' }}
-    </span>
+    <span class="label label--small text--gray-4">Week-agenda (W{{ current_time | date: '%V' }}):</span>
+    <span class="value value--small" style="display: block;">{{ current_time | date: '%A %-d %B %Y' }}</span>
+    <div style="border-top: 1px solid black; margin-top: 2px;"></div>
   </div>
 
   <div class="columns">
     <div class="column" data-overflow="true" data-overflow-counter="true">
-      {% for event in data.single-actions %}
-      <div class="item">
-        <div class="content">
-          <div class="flex flex--row gap--small" style="align-items: center;">
-            <div style="width: 50px; flex-shrink: 0;">
-              <span class="value value--xsmall value--tnums text--gray-4"> {{ event.todo }} </span>
-            </div>
-            <div class="flex--1" style="min-width: 0;">
-              <span class="title title--small" data-clamp="1">{{ event.path }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% for action in data['single-actions'] %}
+        {% render "agenda_row", action: action, category: "single" %}
       {% endfor %}
-
     </div>
-    <div class="column" dat data-overflow="true" data-overflow-counter="true">
+
+    <div class="column" data-overflow="true" data-overflow-counter="true">
       {% for project in data.projects %}
-      {{ project.name }}
-      {% for action in project.actions %}
-      <div class="item">
-        <div class="content">
-          <div class="flex flex--row gap--small" style="align-items: center;">
-            <div style="width: 50px; flex-shrink: 0;">
-              <span class="value value--xsmall value--tnums text--gray-4"> {{ action.todo }} </span>
-            </div>
-            <div class="flex--1" style="min-width: 0;">
-              <span class="title title--small" data-clamp="1">{{ action.path }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {% endfor %}
-
+        {% for action in project.actions %}
+          {% render "agenda_row", action: action, category: project.name %}
+        {% endfor %}
       {% endfor %}
     </div>
   </div>
