@@ -1,26 +1,35 @@
+<style>
+  .agenda-layout { padding-top: 2px; padding-bottom: 4px; justify-content: flex-start; }
+  .agenda-rule   { border-top: 1px solid black; margin-top: 2px; }
+  .agenda-group  { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .agenda-row    { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 6px; align-items: baseline; line-height: 1.3; }
+  .agenda-todo   { overflow: hidden; white-space: nowrap; }
+  .agenda-path   { min-width: 0; }
+</style>
+
 {% template agenda_row %}
-<div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 6px; align-items: baseline; line-height: 1.3;">
-  <div style="overflow: hidden; white-space: nowrap;">
-    <span class="value value--xsmall value--tnums text--gray-3">{{ action.todo }}</span>
+<div class="agenda-row">
+  <div class="agenda-todo">
+    <span class="value value--xsmall value--tnums text--gray-2">{{ action.todo }}</span>
   </div>
-  <div style="min-width: 0;">
+  <div class="agenda-path">
     <span class="title title--small" data-clamp="1">{{ action.path }}</span>
   </div>
 </div>
 {% endtemplate %}
 
-<div class="layout layout--col px--2" style="padding-top: 2px; padding-bottom: 4px; justify-content: flex-start;">
+<div class="layout layout--col px--2 agenda-layout">
   {% assign current_time = trmnl.system.timestamp_utc | plus: trmnl.user.utc_offset %}
 
   <div class="mb--1">
-    <span class="label label--small text--gray-3">Week-agenda (W{{ current_time | date: '%V' }}):</span>
-    <span class="value value--small" style="display: block;">{{ current_time | date: '%A %-d %B %Y' }}</span>
-    <div style="border-top: 1px solid black; margin-top: 2px;"></div>
+    <div class="label label--small text--gray-4">Week-agenda (W{{ current_time | date: '%V' }}):</div>
+    <div class="value value--small">{{ current_time | date: '%A %-d %B %Y' }}</div>
+    <div class="agenda-rule"></div>
   </div>
 
   <div class="columns">
     <div class="column" data-overflow="true" data-overflow-counter="true">
-      <span class="label label--small text--gray-4" style="display: block;">single:</span>
+      <div class="label label--small text--gray-4 agenda-group">single:</div>
       {% for action in data['single-actions'] %}
         {% render "agenda_row", action: action %}
       {% endfor %}
@@ -29,7 +38,7 @@
     <div class="column" data-overflow="true" data-overflow-counter="true">
       {% for project in data.projects %}
         {% if project.actions.size > 0 %}
-          <span class="label label--small text--gray-4" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ project.name }}:</span>
+          <div class="label label--small text--gray-4 agenda-group">{{ project.name }}:</div>
           {% for action in project.actions %}
             {% render "agenda_row", action: action %}
           {% endfor %}
