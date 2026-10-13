@@ -32,5 +32,5 @@ oauth_expiry_field_name: ''
 oauth_expiry_strategy: ''
 oauth_fixed_expiry_ms: ''
 name: GTD Next Actions - From Org
-description:
-refresh_interval:
+description: ''
+refresh_interval: 15
