@@ -1,0 +1,51 @@
+<div class="layout layout--col px--2 py--1">
+  {% assign current_time = trmnl.system.timestamp_utc | plus: trmnl.user.utc_offset %}
+
+  <div class="mb--1">
+    <span class="value value--small" style="white-space: nowrap; display: block;">
+      {{ current_time | date: '%A' }}, {{ current_time | date: '%B %d' }}
+    </span>
+  </div>
+
+  <div class="columns">
+    <div class="column" data-overflow="true" data-overflow-counter="true">
+      {% for event in data.single-actions %}
+      <div class="item">
+        <div class="content">
+          <div class="flex flex--row gap--small" style="align-items: center;">
+            <div style="width: 50px; flex-shrink: 0;">
+              <span class="value value--xsmall value--tnums text--gray-4"> {{ event.todo }} </span>
+            </div>
+            <div class="flex--1" style="min-width: 0;">
+              <span class="title title--small" data-clamp="1">{{ event.path }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <div class="column" dat data-overflow="true" data-overflow-counter="true">
+      {% for project in data.projects %}
+      {{ project.name }}
+      {% for action in project.actions %}
+      <div class="item">
+        <div class="content">
+          <div class="flex flex--row gap--small" style="align-items: center;">
+            <div style="width: 50px; flex-shrink: 0;">
+              <span class="value value--xsmall value--tnums text--gray-4"> {{ action.todo }} </span>
+            </div>
+            <div class="flex--1" style="min-width: 0;">
+              <span class="title title--small" data-clamp="1">{{ action.path }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% endfor %}
+
+      {% endfor %}
+    </div>
+  </div>
+</div>

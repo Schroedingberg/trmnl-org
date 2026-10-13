@@ -1,0 +1,23 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: https://trmnl.com/api/plugin_settings/{{plugin_id}}/data
+polling_headers: authorization=bearer {{user_token}}
+polling_body: ''
+id: 236644
+custom_fields:
+- keyname: user_token
+  field_type: string
+  name: User API Token
+  description: Your TRMNL User API Token from Account > API Keys
+  placeholder: user_jaksdjkajklsdjkls1241
+- keyname: plugin_id
+  field_type: string
+  name: Plugin Setting ID
+  description: The ID of your calendar plugin instance (from the URL)
+  placeholder: 36140
+name: Daily Agenda
+refresh_interval: 15

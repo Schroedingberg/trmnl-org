@@ -1,0 +1,36 @@
+watch: [.trmnlp.yml, src]
+custom_fields: {}
+variables:
+  data:
+    single-actions:
+    - path: [Hose kaufen]
+      tags: [ERRAND]
+      todo: NEXT
+    - path: [Ride bike for an hour]
+      todo: NEXT
+    - path: [Altglas wegbringen.]
+      tags: [ERRAND]
+      todo: NEXT
+    - path: [Schneidebrett einölen]
+      tags: ['@HOME']
+      todo: NEXT
+    - path: [Nachttischlampe putzen]
+      tags: ['@HOME']
+      todo: NEXT
+    - path: [Quittenmus kochen]
+      tags: ['@HOME']
+      todo: NEXT
+    projects:
+    - name: Write the song formerly known as "Hero of the night" [2/3]
+      actions:
+      - {path: Write third phrase of intro, todo: NEXT}
+    - name: Record "The Search" [0/1]
+      actions:
+      - {path: Record Second part of verse, todo: NEXT}
+    - name: Sylvester planen  [1/3]
+      actions:
+      - {path: Jan einladen, todo: NEXT}
+      - {path: Pascal einladen, todo: NEXT}
+    - name: Reset mealie server [3/6]
+      actions:
+      - {path: Deploy it on a new vps, todo: NEXT}
