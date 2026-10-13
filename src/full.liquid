@@ -1,10 +1,7 @@
 {% template agenda_row %}
-<div style="display: grid; grid-template-columns: 72px 68px minmax(0, 1fr); column-gap: 6px; align-items: baseline; line-height: 1.3;">
-  <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-    <span class="label label--small text--gray-4">{{ category }}:</span>
-  </div>
+<div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 6px; align-items: baseline; line-height: 1.3;">
   <div style="overflow: hidden; white-space: nowrap;">
-    <span class="value value--xsmall value--tnums" style="font-weight: bold;">{{ action.todo }}</span>
+    <span class="value value--xsmall value--tnums text--gray-3">{{ action.todo }}</span>
   </div>
   <div style="min-width: 0;">
     <span class="title title--small" data-clamp="1">{{ action.path }}</span>
@@ -12,28 +9,31 @@
 </div>
 {% endtemplate %}
 
-<div class="layout layout--col px--2 py--1">
-
+<div class="layout layout--col px--2" style="padding-top: 2px; padding-bottom: 4px; justify-content: flex-start;">
   {% assign current_time = trmnl.system.timestamp_utc | plus: trmnl.user.utc_offset %}
 
   <div class="mb--1">
-    <span class="label label--small text--gray-4">Week-agenda (W{{ current_time | date: '%V' }}):</span>
+    <span class="label label--small text--gray-3">Week-agenda (W{{ current_time | date: '%V' }}):</span>
     <span class="value value--small" style="display: block;">{{ current_time | date: '%A %-d %B %Y' }}</span>
     <div style="border-top: 1px solid black; margin-top: 2px;"></div>
   </div>
 
   <div class="columns">
     <div class="column" data-overflow="true" data-overflow-counter="true">
+      <span class="label label--small text--gray-4" style="display: block;">single:</span>
       {% for action in data['single-actions'] %}
-        {% render "agenda_row", action: action, category: "single" %}
+        {% render "agenda_row", action: action %}
       {% endfor %}
     </div>
 
     <div class="column" data-overflow="true" data-overflow-counter="true">
       {% for project in data.projects %}
-        {% for action in project.actions %}
-          {% render "agenda_row", action: action, category: project.name %}
-        {% endfor %}
+        {% if project.actions.size > 0 %}
+          <span class="label label--small text--gray-4" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ project.name }}:</span>
+          {% for action in project.actions %}
+            {% render "agenda_row", action: action %}
+          {% endfor %}
+        {% endif %}
       {% endfor %}
     </div>
   </div>
