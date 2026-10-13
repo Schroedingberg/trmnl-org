@@ -1,23 +1,36 @@
 ---
-strategy: polling
+strategy: webhook
 no_screen_padding: 'no'
-dark_mode: 'no'
+dark_mode: 'yes'
 static_data: ''
 polling_verb: get
-polling_url: https://trmnl.com/api/plugin_settings/{{plugin_id}}/data
-polling_headers: authorization=bearer {{user_token}}
+framework_version: 3.4.0
+serverless_language: ''
+refresh_interval_floor: ''
+polling_url: ''
+polling_headers: ''
 polling_body: ''
-id: 236644
-custom_fields:
-- keyname: user_token
-  field_type: string
-  name: User API Token
-  description: Your TRMNL User API Token from Account > API Keys
-  placeholder: user_jaksdjkajklsdjkls1241
-- keyname: plugin_id
-  field_type: string
-  name: Plugin Setting ID
-  description: The ID of your calendar plugin instance (from the URL)
-  placeholder: 36140
-name: Daily Agenda
-refresh_interval: 15
+id: 504822
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+name: GTD Next Actions - From Org
+description:
+refresh_interval:
