@@ -41,6 +41,5 @@ custom_fields:
   field_type: copyable_webhook_url
   url: ''
 name: GTD Next Actions - From Org
-
 description: ''
 refresh_interval: 15
