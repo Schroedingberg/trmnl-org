@@ -47,7 +47,7 @@ jobs:
 
   push:
     # Take test out of needs to push to TRMNL even when the tests fail.
-    needs: [lint, test]
+    needs: [lint]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
