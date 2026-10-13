@@ -1,7 +1,7 @@
 ---
 strategy: webhook
 no_screen_padding: 'no'
-dark_mode: 'yes'
+dark_mode: 'no'
 static_data: ''
 polling_verb: get
 framework_version: 3.4.0
@@ -36,6 +36,11 @@ custom_fields:
   field_type: author_bio
   name: Bio
   github_url: https://github.com/Schroedingberg
+- keyname: webhook_url
+  name: Webhook Url
+  field_type: copyable_webhook_url
+  url: ''
 name: GTD Next Actions - From Org
+
 description: ''
 refresh_interval: 15
