@@ -1,7 +1,7 @@
 ---
 strategy: webhook
 no_screen_padding: 'no'
-dark_mode: 'no'
+dark_mode: 'yes'
 static_data: ''
 polling_verb: get
 framework_version: 3.4.0
@@ -31,6 +31,11 @@ oauth_token_field_name: ''
 oauth_expiry_field_name: ''
 oauth_expiry_strategy: ''
 oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: author_bio
+  field_type: author_bio
+  name: Bio
+  github_url: https://github.com/Schroedingberg
 name: GTD Next Actions - From Org
 description: ''
 refresh_interval: 15
